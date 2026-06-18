@@ -1,21 +1,29 @@
+from enum import Enum
+import random
+
+class CardType(Enum):
+    ALIADO = "Aliado"
+    ORO = "Oro"
+    TOTEM = "Totem"
+    TALISMAN = "Talisman"
+    ARMA = "Arma"
+
 class Card:
-    def __init__(self, name, cost, ability=None):
+    def __init__(self, name, type, cost, ability=None, strength=None):
         self.name = name
+        self.type = type
         self.cost = cost
         self.ability = ability
-
-class Aliado(Card):
-    def __init__(self, name, cost, ability=None, strength=0):
-        super().__init__(name, cost, ability)
         self.strength = strength
 
-Zeus = Aliado("Zeus", 5, "Thunder Strike", 10)
-
+    def __repr__(self):
+        return self.name
+    
 class Player:
     def __init__(self, name):
         self.name = name
-        self.deck = [Zeus]
-        self.hand = [Zeus]
+        self.deck = []
+        self.hand = []
 
 Player1 = Player("Player 1")
 Player2 = Player("Player 2")
