@@ -16,9 +16,9 @@ oro1 = Card("Copihue")
 hand = [alido1, oro1]
 table = []
 
+
 if not oro1.cost:
     hand.remove(oro1)
     table.append(oro1)
     
-print(hand)
-print(table)
+
