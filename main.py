@@ -18,7 +18,7 @@ class Gold(Card):
     def __init__(self, name, type, cost=None):
         super().__init__(name, type, cost)
  
-class Zone():
+class Zone:
     def __init__(self, name):
         self.name = name
         self.cards = []
@@ -44,49 +44,109 @@ class Zone():
     def show_cards(self):
         print(self.cards)
       
-def paid(zone1, zone2, card):
-    if card.cost <= len(zone1):
-        for _ in range(card.cost):
-            gold = zone1.pop()
-            zone2.append(gold)
-    else:
-        print(f"No tienes suficientes Oros para jugar a '{card.name}'.")
-
-def do_damage(zone1, zone2,  damage):
-      for i in range(damage):
-          x = zone1.pop()
-          zone2.append(x)
-
-def battle(attacker, defender, graveyard_attacker, graveyard_defender, deck_defender, defender_line, attacker_line):
-    diference = attacker.strenght - defender.strenght
+    def paid1(self, card, zone):
+        if card.cost <= len(self.cards):
+            for _ in range(card.cost):
+                self.move_to(self.cards[0], zone)
+        else:
+            print(f"No tienes suficientes Oros para jugar a '{card.name}'.")
     
-    if diference > 0:
-        play_card(defender_line, graveyard_defender, defender)
-        do_damage(deck_defender,graveyard_defender, diference)
+    def do_damage(self, zone, damage):
+        for _ in range(damage):
+            self.move_to(self.cards[0], zone)
+            
+class Deck(Zone):
+    def __init__(self):
+        super().__init__("Mazo")
+    
+    def shuffle_deck(self):
+        random.shuffle(self.cards)
         
-    elif diference < 0:
-        play_card(attacker_line, graveyard_attacker, attacker)
+    def draw(self):
+        if self.cards:
+            return self.cards.pop()
+        return None
+    
+class Graveyard(Zone):
+    def __init__(self):
+        super().__init__("Cementerio")
+    
+class Exile(Zone):
+    def __init__(self):
+        super().__init__("Destierro")
         
-    else:
-        play_card(attacker_line, graveyard_attacker, attacker)
-        play_card(defender_line, graveyard_defender, defender)
+class GoldReserve(Zone):
+    def __init__(self):
+        super().__init__("Reserva de oros")
+        
+class PAidGoldZone(Zone):
+    def __init__(self):
+        super().__init__("Zona de oro pagado")
+        
+class SupportLine(Zone):
+    def __init__(self):
+        super().__init__("Línea de apoyo")
 
+class DefenseLine(Zone):
+    def __init__(self):
+        super().__init__("Línea de defensa")
 
-     
-aliado1 = Ally("Zeus", "Aliado", 2, 2)
+class AttackLine(Zone):
+    def __init__(self):
+        super().__init__("Línea de ataque")
+
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.deck = Deck()
+        self.hand = Zone("Mano")
+        self.graveyard = Graveyard()
+        self.exile = Exile()
+        self.gold_reserve = GoldReserve()
+        self.paid_gold_zone = PAidGoldZone()
+        self.support_line = SupportLine()
+        self.defense_line = DefenseLine()
+        self.attack_line = AttackLine()
+
+class Game:
+    '''
+    Turno
+        Agrupación = 0
+        Vigilia = 1
+        Batalla Mitológica
+            Declaración de Ataque = 2
+            Declaración de Bloqueo = 3
+            Guerra de Talismanes = 4
+            Asignación de Daño = 5
+        Final = 6
+        Robar = 7
+    '''
+    def __init__(self, player1, player2):
+        self.players = [player1, player2]
+        self.actual_turn = 1
+        self.actual_phase = 0
+        self.active_player_index = 0
+        
+    @property
+    def active_player(self):
+        return self.players[self.active_player_index]
+    
+    @property
+    def defender_player(self):
+        return self.players[1 - self.active_player_index]
+           
+    def regroup_phase(self):
+        player = self.active_player
+        player.attack_line.regroup(player.defense_line)
+        player.paid_reserve_gold.regroup(player.gold_reserve)
+    
+aliado1 = Ally("Zeus", "Aliado", 3, 2)
 aliado2 = Ally("Apolo", "Aliado", 1, 1)
 oro1 = Gold("Copihue", "Oro")
 oro2 = Gold("Aguila imperial", "Oro")
-mazo = [aliado1, oro1 ,oro2]
-mazo2 = [aliado2, oro1 ,oro2]
-random.shuffle(mazo)
-gold_reserve = []
-paid_gold_zone = []
-hand = []
-defense_line = [aliado2]
-attack_line = [aliado1]
-graveyard1 = []
-graveyard2 = []
+jugador1 = Player("Vicente")
+jugador2 = Player("Gabriel")
+partida = Game(jugador1, jugador2)
 
 
 
