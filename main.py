@@ -179,6 +179,9 @@ class Game:
                 print(f"{ally.name} no puede atacar.")
                 continue
             player.defense_line.move_to(ally, player.attack_line)
+    
+    def lockers(self, attacker, blocker):
+        self.lock.update({f"{attacker}":f"{blocker}"})
         
     def declare_blocks(self, locks):
         defender = self.defender_player
@@ -206,10 +209,8 @@ class Game:
     def damage_assignment(self):
         attacker = self.active_player
         defender = self.defender_player
-            
         
-            
-    
+        
 aliado1 = Ally("Zeus", 1, 3, 2)
 aliado2 = Ally("Apolo", 1, 1, 1)
 oro1 = Gold("Copihue", 0)
