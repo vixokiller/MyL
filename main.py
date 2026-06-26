@@ -91,7 +91,7 @@ class GoldReserve(Zone):
     def __init__(self):
         super().__init__("Reserva de oros")
         
-class PAidGoldZone(Zone):
+class PaidGoldZone(Zone):
     def __init__(self):
         super().__init__("Zona de oro pagado")
         
@@ -115,7 +115,7 @@ class Player:
         self.graveyard = Graveyard()
         self.exile = Exile()
         self.gold_reserve = GoldReserve()
-        self.paid_gold_zone = PAidGoldZone()
+        self.paid_gold_zone = PaidGoldZone()
         self.support_line = SupportLine()
         self.defense_line = DefenseLine()
         self.attack_line = AttackLine()
@@ -181,7 +181,7 @@ class Game:
             player.defense_line.move_to(ally, player.attack_line)
     
     def lockers(self, attacker, blocker):
-        self.lock.update({f"{attacker}":f"{blocker}"})
+        self.lock.update({attacker : blocker})
         
     def declare_blocks(self, locks):
         defender = self.defender_player
@@ -199,7 +199,7 @@ class Game:
         self.locks = locks
         return True
     
-    def detroy_card(self, card):
+    def destroy_card(self, card):
         player = card.cotroller
         zones = [player.attack_line, player.defense_line, player.support_line]
         for zone in zones:
@@ -207,9 +207,15 @@ class Game:
                 zone.move_to(card, player.graveyard)
         
     def damage_assignment(self):
-        attacker = self.active_player
-        defender = self.defender_player
-        
+        for attacker, blocker in self.locks.items():
+            if attacker.strenght > blocker.stranght:
+                self.destroy_card(blocker)
+                self.defender_player.deck.do_damage(self.defender_player.graveyard,((attacker.strenght) - (blocker.strenght)))
+            elif attacker.strenght < blocker.strenght:
+                self.destroy_card(attacker)
+            else:
+                self.destroy_card(attacker)
+                self.destroy_card(blocker)
         
 aliado1 = Ally("Zeus", 1, 3, 2)
 aliado2 = Ally("Apolo", 1, 1, 1)
