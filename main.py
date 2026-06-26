@@ -56,7 +56,7 @@ class Zone:
     def show_cards(self):
         print(self.cards)
       
-    def paid1(self, card, zone):
+    def paid(self, card, zone):
         if card.cost <= len(self.cards):
             for _ in range(card.cost):
                 self.move_to(self.cards[0], zone)
@@ -65,7 +65,11 @@ class Zone:
     
     def do_damage(self, zone, damage):
         for _ in range(damage):
-            self.move_to(self.cards[0], zone)
+            if self.cards:
+                self.move_to(self.cards[0], zone)
+            else:
+                print("El jugador no tiene cartas en el mazo.")
+                break
             
 class Deck(Zone):
     def __init__(self):
@@ -152,10 +156,13 @@ class Game:
     def regroup_phase(self):
         player = self.active_player
         player.attack_line.regroup(player.defense_line)
-        player.paid_reserve_gold.regroup(player.gold_reserve)
+        player.paid_gold_zone.regroup(player.gold_reserve)
         
     def play_card_hand(self, card):
         player = self.active_player
+        if card not in player.hand.cards:
+            print("Esta carta no esta en la mano.")
+            return False
         if card.type == 0:
             if self.some_card_play_vigil:
                 print("Ya jugaste tú primera carta.")
@@ -164,9 +171,12 @@ class Game:
             self.some_card_play_vigil = True
             return True
         if card.type == 1:
-            player.hand.move_to(card, player.defense_line)
-            card.enter_turn = self.actual_turn
-            return True
+            if card.cost <= len(player.gold_reserve.cards):
+                player.gold_reserve.paid(card, player.paid_gold_zone)
+                player.hand.move_to(card, player.defense_line)
+                card.controller = player
+                card.enter_turn = self.actual_turn
+                return True
         return False
     
     def statement_attack(self, allys):
@@ -181,7 +191,7 @@ class Game:
             player.defense_line.move_to(ally, player.attack_line)
     
     def lockers(self, attacker, blocker):
-        self.lock.update({attacker : blocker})
+        self.locks.update({attacker : blocker})
         
     def declare_blocks(self, locks):
         defender = self.defender_player
@@ -200,7 +210,7 @@ class Game:
         return True
     
     def destroy_card(self, card):
-        player = card.cotroller
+        player = card.controller
         zones = [player.attack_line, player.defense_line, player.support_line]
         for zone in zones:
             if card in zone.cards:
@@ -208,7 +218,7 @@ class Game:
         
     def damage_assignment(self):
         for attacker, blocker in self.locks.items():
-            if attacker.strenght > blocker.stranght:
+            if attacker.strenght > blocker.strenght:
                 self.destroy_card(blocker)
                 self.defender_player.deck.do_damage(self.defender_player.graveyard,((attacker.strenght) - (blocker.strenght)))
             elif attacker.strenght < blocker.strenght:
@@ -216,6 +226,31 @@ class Game:
             else:
                 self.destroy_card(attacker)
                 self.destroy_card(blocker)
+    
+    def final_draw(self):
+        drawn_card = self.active_player.deck.draw()
+        if drawn_card:
+            self.active_player.hand.add(drawn_card)
+            
+        self.actual_turn += 1
+        self.locks = {}
+        self.active_player_index = 1 - self.active_player_index
+        self.some_card_play_vigil = False
+    
+    def move_card(self, card, origin_zone, destination_zone):
+        moved_card = origin_zone.remove(card)
+        if self.move_card:
+            destination_zone.add(moved_card)
+            return True
+        return False
+    
+    def next_phase(self):
+        self.actual_phase += 1
+        if self.actual_phase > 7:
+            self.actual_phase = 0
+            self.active_player_index = 1 - self.active_player_index
+            self.actual_turn += 1
+        
         
 aliado1 = Ally("Zeus", 1, 3, 2)
 aliado2 = Ally("Apolo", 1, 1, 1)
@@ -224,10 +259,3 @@ oro2 = Gold("Aguila imperial", 0)
 jugador1 = Player("Vicente")
 jugador2 = Player("Gabriel")
 partida = Game(jugador1, jugador2)
-
-
-
-
-
-
-
