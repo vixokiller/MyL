@@ -1,0 +1,49 @@
+[
+  {
+    "id": "gold_copihue_001",
+    "name": "Copihue",
+    "type": "Oro",
+    "cost": 0,
+    "text": "Carta de oro."
+  },
+  {
+    "id": "ally_zeus_001",
+    "name": "Zeus",
+    "type": "Aliado",
+    "cost": 3,
+    "strength": 2,
+    "text": "Cuando entra en juego, el oponente bota 1 carta.",
+    "abilities": [
+      {
+        "type": "triggered",
+        "trigger": "on_enter_play",
+        "effect": "mill",
+        "target": "opponent",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "ally_apolo_001",
+    "name": "Apolo",
+    "type": "Aliado",
+    "cost": 1,
+    "strength": 1,
+    "text": "Aliado básico."
+  },
+  {
+    "id": "talisman_tormenta_001",
+    "name": "Tormenta de Cenizas",
+    "type": "Talismán",
+    "cost": 2,
+    "text": "El oponente bota 3 cartas.",
+    "abilities": [
+      {
+        "type": "activated",
+        "effect": "mill",
+        "target": "opponent",
+        "amount": 3
+      }
+    ]
+  }
+]
