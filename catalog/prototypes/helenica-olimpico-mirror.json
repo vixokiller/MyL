@@ -1,0 +1,41 @@
+{
+  "prototype_id": "helenica-olimpico-mirror-v1",
+  "format_id": "racial-edicion-primer-bloque-2026-09-05",
+  "edition": "Helénica",
+  "allowed_support_products": ["Helénica", "Imperio"],
+  "race": "Olímpico",
+  "deck_mode": "mirror",
+  "deck_size": 50,
+  "minimum_allies": 16,
+  "minimum_allies_user_confirmed": true,
+  "initial_gold": "Lira",
+  "initial_gold_eligible": true,
+  "decklist_status": "provisional_catalog_ready",
+  "decklist_file": "../decks/helenica-olimpico-mirror-v1.json",
+  "catalog_file": "../cards.provisional.json",
+  "implementation_review": "../reviews/implementation-stages-helenica-olimpico-v1.md",
+  "implementation_wave_summary": {
+    "first_version": 10,
+    "second_stage": 10,
+    "later": 16
+  },
+  "selected_printing_ids": [],
+  "excluded_mechanics": [
+    "change_control",
+    "play_from_graveyard",
+    "play_from_exile",
+    "virtual_gold",
+    "alternative_cost",
+    "replacement",
+    "prevention",
+    "copy_text",
+    "change_type",
+    "multiple_targets"
+  ],
+  "temporarily_excluded_cards": [
+    {
+      "normalized_name": "antorcha olimpica",
+      "reason": "Conflicto entre las categorías prohibida y limitada a una copia en la fuente vigente."
+    }
+  ]
+}
