@@ -30,11 +30,12 @@ Este directorio contiene datos versionados; no contiene lógica del motor.
 - 10 cartas clasificadas para la primera versión del motor.
 - 10 cartas clasificadas para la segunda etapa.
 - 16 cartas postergadas hasta que el núcleo tenga más mecánicas.
-- Todas las fichas están en estado `Parcial` porque faltan producto y URL. Esto
-  no bloquea las pruebas del prototipo; sí bloquea declararlas verificadas.
+- Las 36 fichas incluyen producto y URL y están marcadas como verificadas contra
+  Mazos.cl, fuente secundaria. Esta verificación no convierte el catálogo en una
+  base oficial.
 - Las fuentes externas de reglas y legalidad del formato fueron contrastadas el
-  17 de septiembre de 2026. Esa verificación normativa es independiente de la
-  identificación pendiente de cada impresión.
+  17 de septiembre de 2026. Esa verificación normativa es independiente del
+  contraste de cada impresión con la fuente secundaria.
 - Ninguna etapa cuenta todavía con comportamiento programado. La clasificación
   solo define el orden futuro de trabajo.
 
@@ -47,3 +48,5 @@ conservando la letra `ñ`. No debe usarse como identificador único de impresió
 
 Mazos.cl es una fuente secundaria. No se deben descargar o redistribuir en masa
 sus datos o imágenes hasta confirmar sus condiciones de uso o recibir permiso.
+Cuando una carta tenga más de un producto, `Producto` los conserva en una sola
+celda separados por coma.

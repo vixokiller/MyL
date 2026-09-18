@@ -31,8 +31,9 @@ archivos son material de referencia; no implican que exista comportamiento
 programado.
 
 Las fuentes externas de reglas y legalidad fueron contrastadas el 17 de
-septiembre de 2026. Las fichas individuales continúan como provisionales porque
-producto y URL por impresión siguen incompletos.
+septiembre de 2026. El 18 de septiembre de 2026 se incorporaron producto y URL
+para las 36 fichas y se contrastaron con Mazos.cl como fuente secundaria; el
+catálogo sigue siendo provisional y no una base oficial.
 
 ## Primer paso
 

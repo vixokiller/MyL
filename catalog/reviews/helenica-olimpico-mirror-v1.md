@@ -73,14 +73,14 @@ El usuario no necesita resolverlas todavía:
 
 1. implementar las ventanas de Guerra de Talismanes antes de Focea;
 2. implementar pérdida temporal de habilidades antes de Figuras Negras;
-3. completar producto y URL de cada impresión para promover fichas individuales
-   desde `partial` a `verified`.
+3. complementar la fuente secundaria de cada impresión con fuentes oficiales
+   cuando estén disponibles.
 
 ## Próxima pasada
 
-Las fuentes externas de reglas y legalidad ya fueron contrastadas. La próxima
-pasada documental debe registrar producto y URL por impresión; una ficha solo
-pasará a `verified` cuando esos campos permitan identificarla individualmente.
+Las fuentes externas de reglas y legalidad ya fueron contrastadas. Producto y
+URL por impresión se incorporaron el 18 de septiembre de 2026 y permiten
+identificar las fichas contra Mazos.cl como fuente secundaria.
 
 ## Segunda pasada: datos transcritos por el usuario
 
@@ -104,12 +104,11 @@ El requisito de al menos 16 Aliados queda demostrado por los datos del catálogo
 - En Tótems y Talismanes, `strength` y `race` son `null` porque no aplican.
 - Lira no posee texto, por lo que `printed_text` y `effective_text` son `null`
   válidos y no datos faltantes.
-- `product` y `source_url` continúan pendientes debido a la indisponibilidad de la
-  fuente. Esto no impide modelar las reglas de las cartas, pero sí impide marcar
-  la impresión como completamente verificada.
+- `product` y `source_url` fueron incorporados desde el Excel y contrastados con
+  Mazos.cl como fuente secundaria.
 
-Los textos y características aportados se consideran `user_transcription` y no
-fuente oficial. Las filas deben mantenerse como `Parcial` hasta contrastarlas.
+Los textos y características siguen sin constituir una fuente oficial. Las filas
+quedan marcadas como verificadas contra fuente secundaria.
 
 ### Hallazgos de revisión
 
@@ -123,6 +122,6 @@ fuente oficial. Las filas deben mantenerse como `Parcial` hasta contrastarlas.
 
 ### Hito de catálogo completado
 
-Se crearon definiciones provisionales con procedencia `user_transcription` y se
-clasificaron las habilidades. No existe todavía comportamiento programado para
-ninguna etapa. Producto y URL individuales siguen siendo el pendiente documental.
+Se crearon definiciones provisionales y se clasificaron las habilidades. No
+existe todavía comportamiento programado para ninguna etapa. Producto y URL
+individuales quedaron sincronizados con el catálogo técnico.

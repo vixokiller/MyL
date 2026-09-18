@@ -3,8 +3,8 @@
 ## Resultado
 
 Las 36 cartas del mazo espejo se consideran utilizables como datos provisionales.
-La ausencia de producto y URL no bloquea el primer prototipo, pero impide marcar
-las fichas como verificadas oficialmente.
+Producto y URL se contrastaron con Mazos.cl el 18 de septiembre de 2026 y las
+fichas quedaron verificadas contra esa fuente secundaria.
 
 ## Primera versión — 10 cartas
 
@@ -69,10 +69,8 @@ Reserva de Oro o cambios temporales difíciles de resolver en el núcleo inicial
 
 ## Pendientes no bloqueantes
 
-- Identificar el producto exacto de cada impresión.
-- Añadir una URL de fuente para cada carta.
-- Contrastar nombre, valores y texto con una ficha identificable.
-- Cambiar `Verificado` de `Parcial` a `Sí` solo después de ese contraste.
+- Sustituir o complementar Mazos.cl con fuentes oficiales cuando estén
+  disponibles.
 
 ## Siguiente paso técnico
 
