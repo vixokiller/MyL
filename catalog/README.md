@@ -6,9 +6,8 @@ Este directorio contiene datos versionados; no contiene lógica del motor.
   manual. La hoja `Guía` explica el flujo y la hoja `Cartas` contiene una fila por
   identidad del mazo.
 - `cards.template.csv`: plantilla de captura y revisión de impresiones.
-- `cards.provisional.json`: catálogo técnico generado desde el Excel. Puede ser
-  consumido por el primer prototipo, aunque sus fichas sigan pendientes de una
-  fuente oficial o identificable.
+- `cards.provisional.json`: representación técnica provisional del Excel. Se
+  conserva como entrada para el futuro cargador del catálogo.
 - `formats/racial-edicion-2026-09-05.json`: instantánea inicial de legalidad.
 - `reviews/implementation-stages-helenica-olimpico-v1.md`: orden recomendado de
   implementación de las cartas y pendientes no bloqueantes.
@@ -20,9 +19,8 @@ Este directorio contiene datos versionados; no contiene lógica del motor.
 3. Registrar Tipo, Coste, Fuerza, Raza, Producto, textos y URL de fuente.
 4. Marcar `Verificado = Sí` solo cuando todos los datos estén contrastados. Usar
    `Parcial` cuando exista información incompleta.
-5. Entregar el archivo actualizado a Codex. Codex revisará la legalidad,
-   trasladará la información a los archivos técnicos y clasificará la etapa del
-   motor.
+5. Revisar los cambios con Codex antes de trasladarlos a los archivos técnicos.
+   El responsable del proyecto realizará la programación salvo petición expresa.
 6. No editar manualmente los archivos JSON de `decks/`, `formats/` o
    `prototypes/`.
 
@@ -34,6 +32,11 @@ Este directorio contiene datos versionados; no contiene lógica del motor.
 - 16 cartas postergadas hasta que el núcleo tenga más mecánicas.
 - Todas las fichas están en estado `Parcial` porque faltan producto y URL. Esto
   no bloquea las pruebas del prototipo; sí bloquea declararlas verificadas.
+- Las fuentes externas de reglas y legalidad del formato fueron contrastadas el
+  17 de septiembre de 2026. Esa verificación normativa es independiente de la
+  identificación pendiente de cada impresión.
+- Ninguna etapa cuenta todavía con comportamiento programado. La clasificación
+  solo define el orden futuro de trabajo.
 
 No es obligatorio que el usuario investigue las 36 fichas. Puede completar solo
 los datos que ya conozca, pegar una URL o dejar una celda vacía; Codex continuará

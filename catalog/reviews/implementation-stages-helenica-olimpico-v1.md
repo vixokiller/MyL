@@ -41,6 +41,9 @@ redirección, límites de uso, indestructibilidad y restricciones de construcci�
 - Hilo de Ariadna
 - El Gran Zeus
 
+Estado: planificada, sin implementación. Debe comenzar únicamente después de que
+la Primera versión y el núcleo tengan pruebas completas.
+
 ## Posterior — 16 cartas
 
 Objetivo: dejar para después las interacciones que requieren ventanas de tiempo,
@@ -73,6 +76,6 @@ Reserva de Oro o cambios temporales difíciles de resolver en el núcleo inicial
 
 ## Siguiente paso técnico
 
-Crear el modelo Python de carta y cargar `cards.provisional.json`. Después,
-implementar las 10 cartas de Primera versión una por una, cada una acompañada por
-una prueba que reproduzca su texto efectivo.
+Comenzar el paso 1 de `docs/guia_de_desarrollo.md`: crear y ejecutar un único
+archivo sencillo. La identidad de cartas, las zonas y las carpetas de código se
+introducirán gradualmente. No implementar todavía habilidades de esta lista.

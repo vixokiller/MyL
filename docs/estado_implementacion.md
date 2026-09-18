@@ -1,47 +1,53 @@
-# Estado de implementación del primer prototipo
+# Estado del proyecto
 
 Fecha de corte: 17 de septiembre de 2026.
 
-## Fuentes revisadas
+## Estado real
 
-- `reglas_primer_bloque.md`: especificación normativa del motor.
-- `catalog/catalogo_cartas_helenica_olimpico.xlsx`: catálogo de 36 identidades y
-  50 copias del mazo espejo.
-- `catalog/cards.provisional.json`: representación técnica reproducible del Excel.
+No existe código de implementación. El repositorio contiene únicamente reglas,
+datos provisionales, decisiones de diseño y una guía de trabajo.
 
-El catálogo declara `user_transcription`. Ninguna de sus 36 fichas está
-verificada oficialmente. Producto y URL siguen ausentes en todas las filas. La
-implementación no rellena esos campos ni eleva su estado de verificación.
+| Área | Estado |
+|---|---|
+| Especificación de reglas | Disponible |
+| Catálogo provisional | Disponible: 36 identidades, 50 copias |
+| Configuración de legalidad | Disponible y contrastada externamente |
+| Modelo de cartas y zonas | No iniciado |
+| Movimientos e invariantes | No iniciado |
+| Turnos y fases | No iniciado |
+| Preparación y mazos | No iniciado |
+| Comandos, pagos y eventos | No iniciado |
+| Combate | No iniciado |
+| Habilidades de cartas | No iniciado |
+| Serialización e interfaz | No iniciado |
+| Pruebas automatizadas | No iniciado |
 
-## Primera versión
+## Fuentes conservadas
 
-| Carta | Comportamiento incluido | Límite actual |
-|---|---|---|
-| Lira | Definición de Oro Inicial sin habilidad inventada | Texto y producto sin fuente verificable |
-| Eros | Disparo opcional de entrada en turno 1; busca hasta 2 Oros y baraja | No implementa una cola general de disparos |
-| Ofrenda a los Dioses | Continua de +1 a Aliados Olímpicos mientras está en Reserva | Solo cálculo de Fuerza del prototipo |
-| Panteón | Continua condicional de +2 a Aliados propios | Sin orden de dependencias entre continuas |
-| Festín | En Vigilia, descarta 2 de la Mano y roba 1 | Sin ventanas de respuesta |
-| Gaia | En Vigilia, busca hasta 1 Aliado; una vez por turno; baraja | Límite ligado a la instancia actual |
-| Hemera | Mira y reordena hasta las 3 cartas superiores | La interfaz debe aportar el orden elegido |
-| Sileno | En Vigilia, paga 2 Oros físicos y baraja 1 carta del Cementerio | No implementa Oros virtuales ni reemplazos |
-| Tritón | Robo opcional al entrar o salir del juego | El llamador informa el evento de salida |
-| Templo de la Cazadora | Continua de +1 a Aliados propios mientras está en juego | Solo cálculo de Fuerza del prototipo |
+- `reglas_primer_bloque.md`: especificación normativa y técnica.
+- `catalog/catalogo_cartas_helenica_olimpico.xlsx`: fuente editable del catálogo.
+- `catalog/cards.provisional.json`: representación provisional de los datos.
+- `catalog/formats/racial-edicion-2026-09-05.json`: configuración versionada del
+  formato.
+- `catalog/decks/` y `catalog/prototypes/`: mazo y alcance del prototipo.
 
-Las otras 26 cartas se cargan para consulta, pero `myl.cards` las rechaza como
-comportamiento no soportado. Esto evita interpretar su texto libre o resolver
-silenciosamente reglas todavía pendientes.
+## Criterio para completar un paso de aprendizaje
 
-## Correspondencia con la especificación
+Un paso se considera terminado cuando:
 
-El modelo inicial separa `CardDefinition` (datos compartidos e inmutables) de
-`CardInstance` (identidad, propietario y zona mutable), deriva `in_play` de la
-zona y mantiene el controlador igual al propietario mientras el cambio de
-control permanezca fuera de alcance. El estado mínimo incluye jugadores, zonas,
-turno, fase, semilla determinista, pagos de Oro físico y contadores por turno.
+1. el responsable escribió el ejercicio;
+2. puede explicar con sus palabras qué hace;
+3. lo ejecutó y observó el resultado esperado;
+4. probó al menos un dato diferente;
+5. entiende el error más probable de ese ejercicio.
 
-Todavía no implementa la máquina completa de comandos/eventos descrita en la
-sección 12, preparación de mazos, combate, prioridad, serialización ni una partida
-de principio a fin. Esas omisiones son explícitas y no se simulan con reglas
-inventadas.
+## Próximo hito
 
+No crear todavía una estructura de paquete. El próximo paso será crear un único
+archivo `main.py`, mostrar un mensaje y aprender a ejecutarlo desde la raíz del
+proyecto. Después se representará una carta primero con variables, luego con un
+diccionario y finalmente con una clase sencilla.
+
+Las carpetas `src/` y `tests/`, `Enum`, `dataclass`, inmutabilidad y pruebas con
+`pytest` aparecerán más adelante, después de comprender el problema que resuelve
+cada herramienta. La secuencia completa está en `docs/guia_de_desarrollo.md`.

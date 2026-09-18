@@ -1,38 +1,41 @@
 # Simulador MyL — Primer Bloque
 
-Primer prototipo del motor descrito en `reglas_primer_bloque.md`. El alcance
-actual carga el catálogo provisional Helénica/Olímpico y ejecuta escenarios
-aislados para las diez cartas marcadas como **Primera versión**.
+Repositorio de especificación y planificación para construir un simulador de
+Mitos y Leyendas Primer Bloque.
 
-El detalle de cobertura y límites está en `docs/estado_implementacion.md`.
+## Estado actual
 
-Los datos de las cartas no se presentan como oficiales. Provienen de una
-transcripción del usuario y conservan `verification_status: partial`, además de
-`null` en producto y URL mientras no puedan contrastarse.
+El proyecto está deliberadamente **sin implementación**. No contiene motor,
+pruebas automatizadas, comandos ejecutables ni configuración de un paquete
+Python. La programación comenzará desde cero y será realizada por el responsable
+del proyecto, con acompañamiento de Codex.
 
-## Ejecutar las pruebas
+Codex explicará conceptos, propondrá pasos, revisará fragmentos y ayudará a
+diagnosticar errores. No escribirá código del proyecto salvo que el responsable
+lo solicite expresamente.
 
-```bash
-python -m pytest
-```
+## Documentos principales
 
-## Regenerar el catálogo provisional
+1. `reglas_primer_bloque.md`: especificación funcional y normativa del motor.
+2. `docs/guia_de_desarrollo.md`: itinerario para comenzar a programar.
+3. `docs/estado_implementacion.md`: estado real y checklist de hitos.
+4. `catalog/README.md`: significado y mantenimiento de los datos del catálogo.
+5. `catalog/reviews/implementation-stages-helenica-olimpico-v1.md`: orden sugerido
+   para incorporar las cartas.
 
-```bash
-python tools/generate_cards_provisional.py \
-  catalog/catalogo_cartas_helenica_olimpico.xlsx \
-  catalog/cards.provisional.json
-```
+## Datos conservados
 
-El generador usa solo la biblioteca estándar de Python. No convierte los datos
-en verificados ni completa campos ausentes.
+Se conserva el catálogo provisional Helénica/Olímpico, el mazo espejo, la
+instantánea de legalidad y las revisiones que justifican su clasificación. Estos
+archivos son material de referencia; no implican que exista comportamiento
+programado.
 
-## Límites intencionales
+Las fuentes externas de reglas y legalidad fueron contrastadas el 17 de
+septiembre de 2026. Las fichas individuales continúan como provisionales porque
+producto y URL por impresión siguen incompletos.
 
-- No existe todavía una partida completa ni una interfaz.
-- Las habilidades opcionales reciben las elecciones de forma explícita.
-- Buscar siempre baraja el Castillo, incluso si no encuentra una carta.
-- No se interpreta texto libre: las diez cartas se vinculan a comportamiento
-  compilado mediante su `card_id`.
-- Las cartas fuera de la primera versión se cargan como datos, pero no tienen
-  comportamiento ejecutable.
+## Primer paso
+
+Leer `docs/guia_de_desarrollo.md` y comenzar por el paso 1. Al principio se usará
+un solo archivo y ejemplos pequeños. Las carpetas, pruebas automáticas y conceptos
+más avanzados se introducirán únicamente cuando exista una razón comprensible.

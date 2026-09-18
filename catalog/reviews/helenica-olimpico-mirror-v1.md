@@ -10,8 +10,8 @@ Fecha de revisión: 2026-09-17
 - Cartas prohibidas detectadas por nombre: ninguna.
 - Límites comprobados: Aceite de Oliva 1/1; Afrodita 2/2; Helios 2/2;
   Panteón 2/2.
-- El usuario confirmó que el mazo contiene más de 16 Aliados; queda registrar el
-  tipo y la raza de cada impresión para que el validador pueda demostrarlo.
+- El catálogo registra y el validador demuestra 28 Aliados, superando el mínimo
+  de 16 requerido por el formato.
 - Validación de todas las impresiones y textos: pendiente de catálogo.
 
 `Candidata` significa que la grafía debe confirmarse contra la ficha de la carta;
@@ -71,16 +71,16 @@ no implica que se haya modificado el nombre aportado por el usuario.
 
 El usuario no necesita resolverlas todavía:
 
-1. registrar el tipo y la raza de cada impresión para validar automáticamente el
-   mínimo de Aliados;
-2. implementar cambios de zona y ventanas de Guerra de Talismanes antes de Focea;
-3. implementar destierro y pérdida temporal de habilidades antes de Figuras Negras.
+1. implementar las ventanas de Guerra de Talismanes antes de Focea;
+2. implementar pérdida temporal de habilidades antes de Figuras Negras;
+3. completar producto y URL de cada impresión para promover fichas individuales
+   desde `partial` a `verified`.
 
 ## Próxima pasada
 
-Consultar cada ficha en Mazos.cl, registrar impresión, producto, tipo, coste,
-Fuerza, raza y texto. Una carta solo pasará a `verified` cuando todos esos campos
-tengan fuente y su comportamiento tenga pruebas.
+Las fuentes externas de reglas y legalidad ya fueron contrastadas. La próxima
+pasada documental debe registrar producto y URL por impresión; una ficha solo
+pasará a `verified` cuando esos campos permitan identificarla individualmente.
 
 ## Segunda pasada: datos transcritos por el usuario
 
@@ -121,9 +121,8 @@ fuente oficial. Las filas deben mantenerse como `Parcial` hasta contrastarlas.
   Zagreus (`barajas`) y Titanes (`fuerzza`). No deben corregirse silenciosamente
   en el texto impreso.
 
-### Próximo hito
+### Hito de catálogo completado
 
-Crear definiciones provisionales con procedencia `user_transcription`, clasificar
-la complejidad de cada habilidad y seleccionar el primer conjunto de cartas para
-pruebas unitarias. Producto y URL pueden completarse posteriormente sin bloquear
-este hito.
+Se crearon definiciones provisionales con procedencia `user_transcription` y se
+clasificaron las habilidades. No existe todavía comportamiento programado para
+ninguna etapa. Producto y URL individuales siguen siendo el pendiente documental.
