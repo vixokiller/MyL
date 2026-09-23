@@ -36,8 +36,9 @@ Este directorio contiene datos versionados; no contiene lógica del motor.
 - Las fuentes externas de reglas y legalidad del formato fueron contrastadas el
   17 de septiembre de 2026. Esa verificación normativa es independiente del
   contraste de cada impresión con la fuente secundaria.
-- Ninguna etapa cuenta todavía con comportamiento programado. La clasificación
-  solo define el orden futuro de trabajo.
+- La primera y segunda etapa cuentan con comportamiento programado. La etapa
+  posterior ya incluye Ares, Helios, Focea, Lyssa, Fénix, Thanatos y Titanes;
+  las restantes continúan pendientes.
 
 No es obligatorio que el usuario investigue las 36 fichas. Puede completar solo
 los datos que ya conozca, pegar una URL o dejar una celda vacía; Codex continuará

@@ -1,26 +1,65 @@
 # Estado del proyecto
 
-Fecha de corte: 17 de septiembre de 2026.
+Fecha de corte: 23 de septiembre de 2026.
 
 ## Estado real
 
-No existe código de implementación. El repositorio contiene únicamente reglas,
-datos provisionales, decisiones de diseño y una guía de trabajo.
+Existe un núcleo ejecutable y probado para recorrer la etapa 4 de la guía. El
+alcance actual es un simulador mínimo: no pretende cubrir todavía todas las
+ventanas, blancos, respuestas ni habilidades del reglamento completo.
 
 | Área | Estado |
 |---|---|
 | Especificación de reglas | Disponible |
 | Catálogo provisional | Disponible: 36 identidades, 50 copias |
 | Configuración de legalidad | Disponible y contrastada externamente |
-| Modelo de cartas y zonas | No iniciado |
-| Movimientos e invariantes | No iniciado |
-| Turnos y fases | No iniciado |
-| Preparación y mazos | No iniciado |
-| Comandos, pagos y eventos | No iniciado |
-| Combate | No iniciado |
-| Habilidades de cartas | No iniciado |
-| Serialización e interfaz | No iniciado |
-| Pruebas automatizadas | No iniciado |
+| Modelo de cartas y zonas | Implementado y separado por responsabilidades |
+| Movimientos e invariantes | Implementado y probado |
+| Turnos y fases | Ciclo y Fase Final ordenada implementados |
+| Preparación y mazos | Operación coordinada, Oro Inicial, mano de 8 y mulligan |
+| Comandos, pagos y eventos | Pago, pila pendiente, respuesta, anulación y prevención |
+| Combate | Múltiples atacantes, bloqueo 1:1, Furia, excedente y derrota |
+| Habilidades de cartas | Primera versión y segunda etapa implementadas por registro |
+| Interfaz | Primer cliente local por consola implementado |
+| Serialización | No iniciada |
+| Pruebas automatizadas | 58 pruebas ejecutables |
+
+## Diseño implementado
+
+- `cartas.py` contiene zonas, fases, definiciones, copias físicas, modificadores,
+  validación y construcción de mazos.
+- `jugadores.py` conserva las zonas y decisiones de preparación de cada jugador.
+- `eventos.py` define el historial inmutable y `JugadaPendiente`, con estados
+  pendiente, resuelta, anulada y prevenida.
+- `habilidades.py` registra funciones por nombre y momento (entrada, salida o
+  activación). `Partida` ya no contiene una cadena de `if` por carta.
+- `partida.py` coordina reglas y transiciones. `modelo.py` reexporta la API para
+  no romper clientes existentes.
+
+La preparación valida ambos mazos y ambos Oros Iniciales antes de mutar zonas;
+luego coloca los Oros, baraja y roba ocho para los dos jugadores. Cada mulligan
+devuelve toda la Mano, baraja y roba una menos; el primer turno solo comienza
+cuando ambos jugadores conservaron.
+
+La Fase Final expira modificadores de turno, aplica la excepción de robo del
+primer turno, roba en los demás, descarta el exceso sobre ocho una sola vez,
+cierra ventanas y formaliza el cambio de jugador. El daño al Castillo se procesa
+carta por carta y declara ganador y perdedor cuando el Mazo queda vacío.
+
+Las cartas de segunda etapa implementadas son Almas de Estigia, Astreo, Aceite de
+Oliva, Atenea, Alastor, Comus, Trono Dorado, Olímpicos, Hilo de Ariadna y El Gran
+Zeus. Sus decisiones opcionales se pasan como argumentos explícitos, de modo que
+una futura interfaz pueda solicitarlas sin incrustar entrada/salida en el motor.
+
+En combate pueden declararse varios atacantes, cada bloqueador solo puede
+asignarse una vez, se verifica Furia, el exceso de Fuerza daña el Castillo y los
+modificadores temporales/permanentes se calculan sin mutar la Fuerza impresa. La
+Guerra de Talismanes comienza con el defensor, alterna prioridad y concluye con
+dos cesiones consecutivas.
+
+La etapa posterior comenzó con Ares, Helios, Focea, Lyssa, Fénix, Thanatos y
+Titanes. Su alcance y las aclaraciones normativas pendientes están en
+`docs/etapa_5_consola_y_cartas_posteriores.md`.
 
 ## Fuentes conservadas
 
@@ -43,11 +82,7 @@ Un paso se considera terminado cuando:
 
 ## Próximo hito
 
-No crear todavía una estructura de paquete. El próximo paso será crear un único
-archivo `main.py`, mostrar un mensaje y aprender a ejecutarlo desde la raíz del
-proyecto. Después se representará una carta primero con variables, luego con un
-diccionario y finalmente con una clase sencilla.
-
-Las carpetas `src/` y `tests/`, `Enum`, `dataclass`, inmutabilidad y pruebas con
-`pytest` aparecerán más adelante, después de comprender el problema que resuelve
-cada herramienta. La secuencia completa está en `docs/guia_de_desarrollo.md`.
+Completar las nueve cartas restantes de la etapa posterior, añadir menús
+contextuales de objetivos a la consola, las relaciones de Armas y las capas
+completas de efectos continuos/reemplazos. También falta serializar partidas
+reproducibles.

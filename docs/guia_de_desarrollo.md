@@ -154,6 +154,10 @@ src/myl/
 La razón para separar archivos es comprender y encontrar el código con facilidad,
 no cumplir una estructura decorativa.
 
+**Estado actual:** completado. Se añadieron también `eventos.py` y
+`habilidades.py`; `modelo.py` es una fachada para mantener compatibles los
+ejemplos y pruebas anteriores.
+
 ### Paso 10 — Reemplazar cadenas por `Enum`
 
 Escribir `"mano"`, `"Mano"` o `"mano "` produce tres textos diferentes. Aprende
@@ -231,6 +235,25 @@ Después de dominar las etapas anteriores, avanza así:
 15. recién entonces programar habilidades.
 
 Cada número volverá a dividirse en tareas pequeñas cuando lleguemos a él.
+
+## Etapa 5 — Motor coordinado y extensible
+
+Esta etapa ya está implementada y sirve como referencia para continuar:
+
+1. `preparar_partida` valida y prepara a los dos jugadores como una operación;
+2. `mulligan` devuelve, baraja y roba una carta menos hasta conservar;
+3. `finalizar_turno` aplica en orden expiración, robo, límite de Mano y cierre;
+4. `JugadaPendiente` permite respuestas, anulaciones y prevención antes de
+   resolver en orden inverso;
+5. la Guerra de Talismanes modela prioridad y dos cesiones consecutivas;
+6. el registro de habilidades separa el comportamiento de cartas del flujo de
+   `Partida`;
+7. el combate admite varios atacantes, asignaciones completas, Furia, excedente
+   de daño, prevención y derrota por Castillo vacío.
+
+Al añadir una carta nueva, primero escribe una prueba de su ventana y sus zonas,
+luego registra una función en `habilidades.py`. No agregues una rama por nombre a
+`Partida`: esa clase debe seguir coordinando reglas generales.
 
 ## Regla para saber si puedes avanzar
 

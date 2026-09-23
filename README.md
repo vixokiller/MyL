@@ -5,14 +5,14 @@ Mitos y Leyendas Primer Bloque.
 
 ## Estado actual
 
-El proyecto está deliberadamente **sin implementación**. No contiene motor,
-pruebas automatizadas, comandos ejecutables ni configuración de un paquete
-Python. La programación comenzará desde cero y será realizada por el responsable
-del proyecto, con acompañamiento de Codex.
+El proyecto contiene un motor Python modular y una suite automatizada. Cubre la
+preparación de dos jugadores, mulligan tradicional, turnos y Fase Final,
+recursos, jugadas pendientes, ventanas de respuesta, combate y las dos primeras
+etapas del mazo Helénica/Olímpico.
 
-Codex explicará conceptos, propondrá pasos, revisará fragmentos y ayudará a
-diagnosticar errores. No escribirá código del proyecto salvo que el responsable
-lo solicite expresamente.
+`src/myl/modelo.py` continúa siendo la fachada pública compatible. La
+implementación se divide en `cartas.py`, `jugadores.py`, `eventos.py`,
+`habilidades.py` y `partida.py`.
 
 ## Documentos principales
 
@@ -29,14 +29,30 @@ Se conserva el catálogo provisional Helénica/Olímpico, el mazo espejo, la
 instantánea de legalidad y las revisiones que justifican su clasificación. Estos
 archivos son material de referencia; no implican que exista comportamiento
 programado.
-
+informacion
 Las fuentes externas de reglas y legalidad fueron contrastadas el 17 de
 septiembre de 2026. El 18 de septiembre de 2026 se incorporaron producto y URL
 para las 36 fichas y se contrastaron con Mazos.cl como fuente secundaria; el
 catálogo sigue siendo provisional y no una base oficial.
 
-## Primer paso
+## Ejecutar las pruebas
 
-Leer `docs/guia_de_desarrollo.md` y comenzar por el paso 1. Al principio se usará
-un solo archivo y ejemplos pequeños. Las carpetas, pruebas automáticas y conceptos
-más avanzados se introducirán únicamente cuando exista una razón comprensible.
+Desde la raíz del repositorio:
+
+```bash
+pytest -q
+```
+
+## Jugar por consola
+
+```bash
+python main.py --jugador-1 Alicia --jugador-2 Bruno
+```
+
+Escribe `ayuda` dentro de la partida para ver los comandos. El cliente actual es
+un primer modo local y todavía omite menús para habilidades con elecciones
+complejas; el alcance y los siguientes incrementos se describen en
+`docs/etapa_5_consola_y_cartas_posteriores.md`.
+
+La explicación del diseño y sus extensiones siguientes está en
+`docs/estado_implementacion.md` y `docs/guia_de_desarrollo.md`.

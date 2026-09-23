@@ -41,8 +41,10 @@ redirección, límites de uso, indestructibilidad y restricciones de construcci�
 - Hilo de Ariadna
 - El Gran Zeus
 
-Estado: planificada, sin implementación. Debe comenzar únicamente después de que
-la Primera versión y el núcleo tengan pruebas completas.
+Estado: implementada mediante el registro de `src/myl/habilidades.py`. Incluye
+respuestas, búsquedas condicionadas, movimientos entre zonas, límites por turno,
+modificadores permanentes e indestructibilidad. Las decisiones opcionales y los
+objetivos se reciben explícitamente desde quien invoque el motor.
 
 ## Posterior — 16 cartas
 
@@ -67,6 +69,12 @@ Reserva de Oro o cambios temporales difíciles de resolver en el núcleo inicial
 - Águila Imperial
 - Titanes
 
+Estado: en curso. Ares, Helios, Focea, Lyssa, Fénix, Thanatos y Titanes están
+implementadas y probadas. Las nueve identidades restantes requieren los
+incrementos de control, Oros virtuales, pérdida de habilidades, cambios de tipo,
+juego gratuito o prevención reactiva descritos en
+`docs/etapa_5_consola_y_cartas_posteriores.md`.
+
 ## Pendientes no bloqueantes
 
 - Sustituir o complementar Mazos.cl con fuentes oficiales cuando estén
@@ -74,6 +82,6 @@ Reserva de Oro o cambios temporales difíciles de resolver en el núcleo inicial
 
 ## Siguiente paso técnico
 
-Comenzar el paso 1 de `docs/guia_de_desarrollo.md`: crear y ejecutar un único
-archivo sencillo. La identidad de cartas, las zonas y las carpetas de código se
-introducirán gradualmente. No implementar todavía habilidades de esta lista.
+Extender el mismo registro con la etapa posterior. Antes de cada grupo deben
+añadirse pruebas de la ventana o relación nueva que utiliza (Armas, control,
+efectos globales o reemplazos de movimiento).
